@@ -1,5 +1,9 @@
 ﻿@model List<string>
 
+@{
+	var bucketUrl = configuration["AWS:BucketURL"];
+}
+
 <h1>AWS Storage S3</h1>
 
 <p>
@@ -15,7 +19,14 @@
 		{
 			<li class="list-group-item">
 				@name
-				<img src="https://bucket-puente-cpc.s3.us-east-1.amazonaws.com/@name" style="width:120px; height:120px" />
+				@{
+					string url = bucketUrl + name;
+				}
+				<img src="@url" style="width:120px; height:120px" />
+				<a asp-controller="AWSFiles" asp-action="PrivateFile"
+				   asp-route-filename="@name" class="btn btn-warning">
+					Private File
+				</a>
 				<a asp-controller="AWSFiles" asp-action="DeleteFile"
 				   asp-route-filename="@name" class="btn btn-danger">
 					Delete

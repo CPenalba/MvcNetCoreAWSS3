@@ -62,5 +62,12 @@ namespace MvcNetCoreAWSS3.Services
             List<string> keyFiles = response.Versions.Select(x => x.Key).ToList();
             return keyFiles;
         }
+
+        //METODO PARA RECUPERAR UN FICHERO SI NO FUERA PUBLICO NUESTRO BUCKET
+        public async Task<Stream> GetPrivateFileAsync(string fileName)
+        {
+            GetObjectResponse response = await this.ClientS3.GetObjectAsync(this.BucketName, fileName);
+            return response.ResponseStream;
+        }
     }
 }

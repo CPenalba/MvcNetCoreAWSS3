@@ -38,5 +38,11 @@ namespace MvcNetCoreAWSS3.Controllers
             await this.service.DeleteFileAsync(filename);
             return RedirectToAction("Index");
         }
+
+        public async Task<IActionResult> PrivateFile(string filename)
+        {
+            Stream stream = await this.service.GetPrivateFileAsync(filename);
+            return File(stream, "image/png");
+        }
     }
 }
