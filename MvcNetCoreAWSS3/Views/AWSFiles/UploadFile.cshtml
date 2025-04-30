@@ -1,0 +1,15 @@
+﻿﻿<h1 style="color:blue">Upload File AWS</h1>
+
+<p>
+    <a asp-controller="AWSFiles" asp-action="Index" class="btn btn-success">
+        Back to Index
+    </a>
+</p>
+
+<form method="post" enctype="multipart/form-data">
+    <label>Seleccione un fichero</label>    
+    <input type="file" name="file" class="form-control" />
+    <br />
+    <button class="btn btn-info">Upload File</button>
+</form>
+

@@ -1,0 +1,26 @@
+﻿@model List<string>
+
+<h1>AWS Storage S3</h1>
+
+<p>
+	<a asp-controller="AWSFiles" asp-action="UploadFile" class="btn btn-primary">
+		Upload File AWS
+	</a>
+</p>
+
+@if (Model != null)
+{
+	<ul class="list-group">
+		@foreach (string name in Model)
+		{
+			<li class="list-group-item">
+				@name
+				<img src="https://bucket-puente-cpc.s3.us-east-1.amazonaws.com/@name" style="width:120px; height:120px" />
+				<a asp-controller="AWSFiles" asp-action="DeleteFile"
+				   asp-route-filename="@name" class="btn btn-danger">
+					Delete
+				</a>
+			</li>
+		}
+	</ul>
+}
